@@ -13,3 +13,25 @@ Started: 2026-03-22T13:54:14.925Z
 
 ## Progress
 
+### 2026-03-22T22:00:00.000Z - US-001: Initialize Vite + React project with TypeScript
+
+- What was implemented
+  - Scaffolded Vite + React + TypeScript project using `npm create vite@latest`
+  - Since the target directory had existing files, created project in temp-vite subdirectory then moved files to root
+  - Installed dependencies via npm install
+  - Verified lint and build pass successfully
+
+- Files changed
+  - Added: vite.config.ts, tsconfig.json, tsconfig.app.json, tsconfig.node.json, index.html, package.json, package-lock.json, eslint.config.js
+  - Added: src/main.tsx, src/App.tsx, src/App.css, src/index.css
+  - Added: public/icons.svg, public/favicon.svg, src/assets/*
+
+- **Learnings for future iterations:**
+  - Patterns discovered:
+    - Vite's `create-vite` doesn't scaffold into non-empty directories by default
+    - Workaround: create in subdirectory, then move files to root
+  - Gotchas encountered:
+    - `npm` command not found in bash - need to use `cmd //c npm` on Windows
+    - Git commit message with special characters may need different quoting in cmd vs bash
+
+---
