@@ -13,6 +13,24 @@ Started: 2026-03-22T13:54:14.925Z
 
 ## Progress
 
+### 2026-03-22T22:04:00.000Z - US-003: Configure Vite for development
+
+- What was implemented
+  - Updated vite.config.ts with explicit server port (5173), HMR configuration, and build output (dist folder)
+  - Verified build passes successfully
+
+- Files changed
+  - Modified: vite.config.ts
+
+- **Learnings for future iterations:**
+  - Patterns discovered:
+    - Vite's HMR is enabled by default, but can be explicitly configured with `server.hmr`
+    - Dist folder is Vite's default build output, but explicitly setting `build.outDir` makes the intent clear
+  - Gotchas encountered:
+    - None
+
+---
+
 ### 2026-03-22T22:00:00.000Z - US-001: Initialize Vite + React project with TypeScript
 
 - What was implemented
@@ -33,5 +51,11 @@ Started: 2026-03-22T13:54:14.925Z
   - Gotchas encountered:
     - `npm` command not found in bash - need to use `cmd //c npm` on Windows
     - Git commit message with special characters may need different quoting in cmd vs bash
+
+---
+
+### 2026-03-22 14:03:37 - US-001: Initialize Vite + React project with TypeScript
+
+Completed task: Initialize Vite + React project with TypeScript
 
 ---
