@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "project": "测试项目",
+  "sourceDir": "",
+  "commands": {
+    "test": "npm test",
+    "build": "npm run build",
+    "typecheck": "npm run typecheck"
+  },
+  "claude": {
+    "model": "opus"
+  },
+  "afk": {
+    "stopOnFailure": true,
+    "notifications": true
+  },
+  "logs": {
+    "retention": 50
+  }
+}

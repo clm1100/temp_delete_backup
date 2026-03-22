@@ -1,0 +1,84 @@
+{
+  "version": "1.0.0",
+  "project": "测试项目",
+  "branchName": "master",
+  "description": "",
+  "createdAt": "2026-03-22T13:54:14.924Z",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Initialize Vite + React project with TypeScript",
+      "description": "Use Vite to scaffold a new React + TypeScript project in the current directory. Run `npm create vite@latest . -- --template react-ts` to create the base project files (index.html, vite.config.ts, tsconfig.json, src/main.tsx, src/App.tsx).",
+      "acceptanceCriteria": [
+        "vite.config.ts exists with react-ts template",
+        "tsconfig.json is configured for React/TypeScript",
+        "index.html exists with root div and Vite script",
+        "src/main.tsx renders App component",
+        "src/App.tsx is a functional React component"
+      ],
+      "priority": 1,
+      "status": "in_progress",
+      "createdAt": "2026-03-22T13:58:32.445Z",
+      "updatedAt": "2026-03-22T13:58:40.302Z"
+    },
+    {
+      "id": "US-002",
+      "title": "Install React and Vite dependencies",
+      "description": "Run npm install to install all dependencies defined in package.json. This includes react, react-dom, vite, and TypeScript dev dependencies.",
+      "acceptanceCriteria": [
+        "package.json contains react, react-dom dependencies",
+        "package.json contains vite and @vitejs/plugin-react",
+        "package.json contains TypeScript and @types/react, @types/react-dom",
+        "node_modules directory exists after install",
+        "package-lock.json is generated"
+      ],
+      "priority": 2,
+      "status": "pending",
+      "createdAt": "2026-03-22T13:58:32.463Z"
+    },
+    {
+      "id": "US-003",
+      "title": "Configure Vite for development",
+      "description": "Set up vite.config.ts with the React plugin and configure the dev server to run on localhost with hot module replacement.",
+      "acceptanceCriteria": [
+        "vite.config.ts imports and uses @vitejs/plugin-react",
+        "Dev server runs on port 5173 (default Vite port)",
+        "Hot module replacement is enabled",
+        "Build output is configured to dist folder"
+      ],
+      "priority": 3,
+      "status": "pending",
+      "createdAt": "2026-03-22T13:58:32.476Z"
+    },
+    {
+      "id": "US-004",
+      "title": "Create src directory structure",
+      "description": "Organize the src folder with standard React project structure: components/, pages/, hooks/, utils/, types/, and assets/. Move App.tsx and main.tsx to the appropriate locations.",
+      "acceptanceCriteria": [
+        "src/components/ directory exists for reusable components",
+        "src/pages/ directory exists for page-level components",
+        "src/hooks/ directory exists for custom hooks",
+        "src/utils/ directory exists for utility functions",
+        "src/types/ directory exists for TypeScript types"
+      ],
+      "priority": 4,
+      "status": "pending",
+      "createdAt": "2026-03-22T13:58:32.488Z"
+    },
+    {
+      "id": "US-005",
+      "title": "Set up basic CSS/global styles",
+      "description": "Create a global CSS file with base styles (reset, font settings, CSS variables for theming). Import it in main.tsx. Create index.css or App.css with foundational styles.",
+      "acceptanceCriteria": [
+        "Global CSS file imports normalize/reset styles",
+        "CSS variables are defined for colors and spacing",
+        "Global styles are imported in main.tsx",
+        "Body has proper font-family and box-sizing settings"
+      ],
+      "priority": 5,
+      "status": "pending",
+      "createdAt": "2026-03-22T13:58:32.516Z"
+    }
+  ],
+  "updatedAt": "2026-03-22T13:58:40.302Z"
+}

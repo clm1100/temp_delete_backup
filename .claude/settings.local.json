@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(playwriter skill:*)",
+      "Bash(playwriter session:*)",
+      "Bash(playwriter:*)",
+      "Bash(claude:*)",
+      "Bash(npm view:*)",
+      "Bash(gh release:*)",
+      "Bash(curl -s https://api.github.com/repos/anthropics/claude-code/releases/latest)",
+      "Bash(npm list:*)",
+      "Bash(where claude:*)",
+      "Read(//c/Users/15787/.local/bin/**)",
+      "Read(//c/Users/15787/AppData/Local/**)",
+      "Read(//c/Users/15787/AppData/Roaming/**)",
+      "Bash(npm config:*)",
+      "Bash(winget list:*)",
+      "Bash(where npm:*)",
+      "Bash(/c/vm4w/nodejs/npm.cmd view:*)",
+      "Bash(curl -sL https://github.com/anthropics/claude-code/releases/expanded_assets/v2.1.81)",
+      "Bash(curl:*)",
+      "Bash(npm.cmd view:*)",
+      "Bash(npm.cmd install:*)",
+      "Bash(echo \"$PATH\")",
+      "Bash(npm.cmd list:*)",
+      "Bash(cat ~/.claude/debug/*.log)",
+      "Bash(find /c/Users/15787/AppData -name *claude* -type f)",
+      "Bash(\"/c/Users/15787/.vscode/extensions/anthropic.claude-code-2.1.81-win32-x64/resources/native-binary/claude.exe\" --version)",
+      "Bash(echo \"Exit code: $?\")",
+      "Bash(find /c/Users/15787/AppData/Roaming/Code -name *.log)",
+      "Bash(tasklist)",
+      "Bash(where bash:*)",
+      "Bash(powershell -Command \"[Environment]::SetEnvironmentVariable\\('CLAUDE_CODE_GIT_BASH_PATH', 'C:\\\\Users\\\\15787\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe', 'User'\\)\")",
+      "Bash(powershell -Command \"[Environment]::GetEnvironmentVariable\\('CLAUDE_CODE_GIT_BASH_PATH', 'User'\\)\")"
+    ]
+  }
+}
