@@ -8,6 +8,9 @@ Started: 2026-03-22T13:54:14.925Z
 ## Codebase Patterns
 
 <!-- Add reusable patterns discovered during implementation -->
+- `npm` not found in bash on Windows - use `cmd //c npm` instead
+
+---
 
 ---
 
@@ -28,6 +31,27 @@ Started: 2026-03-22T13:54:14.925Z
     - Empty directories can be preserved in git with .gitkeep files
   - Gotchas encountered:
     - None
+
+---
+
+### 2026-03-22T22:20:00.000Z - US-005: Set up basic CSS/global styles
+
+- What was implemented
+  - Added `import 'normalize.css'` to index.css
+  - Existing index.css already had CSS variables, reset styles, and proper font settings
+  - Installed normalize.css dependency via npm
+
+- Files changed
+  - Modified: src/index.css (added normalize.css import)
+  - Modified: package.json (added normalize.css dependency)
+  - Modified: package-lock.json
+
+- **Learnings for future iterations:**
+  - Patterns discovered:
+    - CSS variables defined in :root work well for theming
+    - normalize.css provides a good base reset that works across browsers
+  - Gotchas encountered:
+    - npm command not found in bash - need to use `cmd //c npm` on Windows
 
 ---
 
@@ -81,5 +105,11 @@ Completed task: Initialize Vite + React project with TypeScript
 ### 2026-03-22 14:05:54 - US-002: Install React and Vite dependencies
 
 Completed task: Install React and Vite dependencies
+
+---
+
+### 2026-03-22 14:08:19 - US-004: Create src directory structure
+
+Completed task: Create src directory structure
 
 ---

@@ -66,7 +66,7 @@
       "priority": 4,
       "status": "completed",
       "createdAt": "2026-03-22T13:58:32.488Z",
-      "updatedAt": "2026-03-22T14:05:54.185Z"
+      "updatedAt": "2026-03-22T14:08:19.277Z"
     },
     {
       "id": "US-005",
@@ -79,9 +79,10 @@
         "Body has proper font-family and box-sizing settings"
       ],
       "priority": 5,
-      "status": "pending",
-      "createdAt": "2026-03-22T13:58:32.516Z"
+      "status": "completed",
+      "createdAt": "2026-03-22T13:58:32.516Z",
+      "updatedAt": "2026-03-22T14:08:19.300Z"
     }
   ],
-  "updatedAt": "2026-03-22T14:05:54.185Z"
+  "updatedAt": "2026-03-22T14:08:19.300Z"
 }
