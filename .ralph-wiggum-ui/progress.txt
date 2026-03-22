@@ -13,6 +13,24 @@ Started: 2026-03-22T13:54:14.925Z
 
 ## Progress
 
+### 2026-03-22T22:06:00.000Z - US-004: Create src directory structure
+
+- What was implemented
+  - Created src/components/, src/pages/, src/hooks/, src/utils/, src/types/ directories
+  - Added .gitkeep files to preserve empty directories in git
+  - Verified build and lint pass successfully
+
+- Files changed
+  - Added: src/components/.gitkeep, src/pages/.gitkeep, src/hooks/.gitkeep, src/utils/.gitkeep, src/types/.gitkeep
+
+- **Learnings for future iterations:**
+  - Patterns discovered:
+    - Empty directories can be preserved in git with .gitkeep files
+  - Gotchas encountered:
+    - None
+
+---
+
 ### 2026-03-22T22:04:00.000Z - US-003: Configure Vite for development
 
 - What was implemented
@@ -57,5 +75,11 @@ Started: 2026-03-22T13:54:14.925Z
 ### 2026-03-22 14:03:37 - US-001: Initialize Vite + React project with TypeScript
 
 Completed task: Initialize Vite + React project with TypeScript
+
+---
+
+### 2026-03-22 14:05:54 - US-002: Install React and Vite dependencies
+
+Completed task: Install React and Vite dependencies
 
 ---
