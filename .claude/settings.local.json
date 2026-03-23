@@ -32,7 +32,14 @@
       "Bash(tasklist)",
       "Bash(where bash:*)",
       "Bash(powershell -Command \"[Environment]::SetEnvironmentVariable\\('CLAUDE_CODE_GIT_BASH_PATH', 'C:\\\\Users\\\\15787\\\\scoop\\\\apps\\\\git\\\\current\\\\bin\\\\bash.exe', 'User'\\)\")",
-      "Bash(powershell -Command \"[Environment]::GetEnvironmentVariable\\('CLAUDE_CODE_GIT_BASH_PATH', 'User'\\)\")"
+      "Bash(powershell -Command \"[Environment]::GetEnvironmentVariable\\('CLAUDE_CODE_GIT_BASH_PATH', 'User'\\)\")",
+      "Bash(npm install:*)",
+      "Bash(C:/vm4w/nodejs/npm.cmd install:*)",
+      "Bash(cmd.exe /c \"npm install react-router-dom\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup && npm install react-router-dom\")",
+      "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup && npm install react-router-dom 2>&1\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup''; npm install react-router-dom\")",
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup''; npm install antd\")"
     ]
   }
 }

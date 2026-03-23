@@ -141,3 +141,9 @@ Completed task: Create src directory structure
 Completed task: Set up basic CSS/global styles
 
 ---
+
+### 2026-03-22 14:45:41 - US-006: 配置vite.config.js
+
+Completed task: 配置vite.config.js
+
+---
