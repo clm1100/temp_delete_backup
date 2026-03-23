@@ -11,7 +11,21 @@ function Login() {
     const success = await login(values.email, values.password)
     if (success) {
       message.success('登录成功')
-      navigate('/')
+      // 根据角色跳转
+      // 注意：实际跳转时需要在 AuthContext 中获取用户信息，这里通过 localStorage 获取
+      const stored = localStorage.getItem('user')
+      if (stored) {
+        const user = JSON.parse(stored)
+        if (user.role === 'super_admin') {
+          navigate('/admin/venues')
+        } else if (user.venueId) {
+          navigate(`/venue/${user.venueId}/dashboard`)
+        } else {
+          navigate('/')
+        }
+      } else {
+        navigate('/')
+      }
     } else {
       message.error('邮箱或密码错误')
     }

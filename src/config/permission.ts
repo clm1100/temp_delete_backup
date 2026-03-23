@@ -1,12 +1,15 @@
+import type { Role, PermissionCode } from '@/types/auth'
+import type { MenuItem } from '@/types/auth'
+
 // 角色对应的权限码
-export const rolePermissions = {
+export const rolePermissions: Record<Role, PermissionCode[]> = {
   super_admin: ['venue:view', 'venue:edit', 'staff:view', 'staff:edit', 'report:view', 'settings:view', 'settings:edit'],
   venue_admin: ['venue:view', 'venue:edit', 'staff:view', 'staff:edit', 'report:view'],
   staff: ['venue:view', 'report:view'],
 }
 
 // 菜单配置
-export const menuConfig = [
+export const menuConfig: MenuItem[] = [
   {
     key: 'dashboard',
     label: '仪表盘',
@@ -50,10 +53,10 @@ export const menuConfig = [
 
 // 检查用户是否有权限访问
 export function hasPermission(
-  userRole: {},
-  userPermissions: [],
-  allowedRoles: [],
-  allowedPermissions?: []
+  userRole: Role,
+  userPermissions: PermissionCode[],
+  allowedRoles: Role[],
+  allowedPermissions?: PermissionCode[]
 ): boolean {
   // 先检查角色
   if (!allowedRoles.includes(userRole)) {

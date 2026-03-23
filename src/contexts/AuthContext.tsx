@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, ReactNode } from 'react'
-import { User, Role, PermissionCode } from '@/types/auth'
+import type { User, Role, PermissionCode } from '@/types/auth'
 import { rolePermissions } from '@/config/permission'
 
 interface AuthContextType {
@@ -35,6 +35,13 @@ const mockUsers: Record<string, User> = {
     venueId: 'venue-1',
     permissions: rolePermissions.staff,
   },
+}
+
+// 模拟场馆数据
+export const mockVenues: Record<string, { id: string; name: string; address: string }> = {
+  'venue-1': { id: 'venue-1', name: '朝阳区体育馆', address: '北京市朝阳区建国路88号' },
+  'venue-2': { id: 'venue-2', name: '海淀区体育中心', address: '北京市海淀区中关村大街1号' },
+  'venue-3': { id: 'venue-3', name: '东城区健身馆', address: '北京市东城区东单大街52号' },
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {

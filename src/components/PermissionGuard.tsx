@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { Role, PermissionCode } from '@/types/auth'
+import type { Role, PermissionCode } from '@/types/auth'
 import { usePermission } from '@/hooks/usePermission'
 
 interface PermissionGuardProps {

@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { Role, PermissionCode } from '@/types/auth'
+import type { Role, PermissionCode } from '@/types/auth'
 import { useAuth } from '@/contexts/AuthContext'
 import { hasPermission } from '@/config/permission'
 
