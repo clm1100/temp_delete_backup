@@ -1,0 +1,70 @@
+{
+  "common": {
+    "login": "Login",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "confirm": "Confirm",
+    "search": "Search",
+    "reset": "Reset",
+    "submit": "Submit"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "venues": "Venue Management",
+    "staff": "Staff Management",
+    "reports": "Reports",
+    "settings": "Settings",
+    "venueManagement": "Enter Venue",
+    "backToAdmin": "Back to Admin",
+    "systemAdmin": "System Admin",
+    "venueOperation": "Venue Operation"
+  },
+  "auth": {
+    "loginSuccess": "Login successful",
+    "loginFailed": "Invalid email or password",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "testAccounts": "Test accounts: super@example.com / admin@example.com / staff@example.com"
+  },
+  "roles": {
+    "super_admin": "Super Admin",
+    "venue_admin": "Venue Admin",
+    "staff": "Staff"
+  },
+  "venue": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "venueList": "Venue List",
+    "addVenue": "Add Venue",
+    "address": "Address",
+    "status": "Status"
+  },
+  "staff": {
+    "staffManagement": "Staff Management",
+    "addStaff": "Add Staff",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "dashboard": {
+    "welcome": {
+      "super_admin": "Welcome to Super Admin Dashboard",
+      "venue_admin": "Welcome to Venue Admin Dashboard",
+      "staff": "Welcome to Staff Dashboard"
+    },
+    "venueCount": "Venue Count",
+    "staffCount": "Staff Count",
+    "orderCount": "Monthly Orders",
+    "growth": "Growth"
+  },
+  "footer": "Sports Venue Management System ©"
+}

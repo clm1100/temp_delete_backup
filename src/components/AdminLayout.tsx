@@ -7,7 +7,9 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
+import { useTranslation } from 'react-i18next'
+import { useAuthStore } from '@/stores/authStore'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const { Header, Sider, Content, Footer } = Layout
 const { Text } = Typography
@@ -17,24 +19,26 @@ const iconMap: Record<string, React.ReactNode> = {
   Setting: <SettingOutlined />,
 }
 
-const adminMenuItems = [
-  {
-    key: '/admin/venues',
-    icon: iconMap.Home,
-    label: '体育馆管理',
-  },
-  {
-    key: '/admin/settings',
-    icon: iconMap.Setting,
-    label: '系统设置',
-  },
-]
-
 export function AdminLayout() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { user, logout } = useAuth()
+  const user = useAuthStore((state) => state.user)
+  const logout = useAuthStore((state) => state.logout)
   const [collapsed, setCollapsed] = useState(false)
+
+  const adminMenuItems = [
+    {
+      key: '/admin/venues',
+      icon: iconMap.Home,
+      label: t('menu.venues'),
+    },
+    {
+      key: '/admin/settings',
+      icon: iconMap.Setting,
+      label: t('menu.settings'),
+    },
+  ]
 
   const selectedKey = location.pathname
 
@@ -42,7 +46,7 @@ export function AdminLayout() {
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: '退出登录',
+      label: t('common.logout'),
     },
   ]
 
@@ -57,12 +61,6 @@ export function AdminLayout() {
     }
   }
 
-  const roleLabels: Record<string, string> = {
-    super_admin: '超级管理员',
-    venue_admin: '场馆管理员',
-    staff: '普通员工',
-  }
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
@@ -72,7 +70,7 @@ export function AdminLayout() {
         theme="light"
       >
         <div className="logo" style={{ height: 32, margin: 16, textAlign: 'center' }}>
-          {!collapsed && <span>系统管理</span>}
+          {!collapsed && <span>{t('menu.systemAdmin')}</span>}
         </div>
         <Menu
           theme="light"
@@ -85,6 +83,7 @@ export function AdminLayout() {
       <Layout>
         <Header style={{ background: '#fff', padding: '0 16px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
           <Space size="middle">
+            <LanguageSwitcher />
             <Dropdown
               menu={{ items: userMenuItems, onClick: handleUserMenuClick }}
               placement="bottomRight"
@@ -93,7 +92,7 @@ export function AdminLayout() {
                 <Avatar icon={<UserOutlined />} />
                 <div style={{ lineHeight: 1.3 }}>
                   <Text strong style={{ display: 'block' }}>{user?.email}</Text>
-                  <Text type="secondary" style={{ fontSize: 12 }}>{user && roleLabels[user.role]}</Text>
+                  <Text type="secondary" style={{ fontSize: 12 }}>{user && t(`roles.${user.role}`)}</Text>
                 </div>
               </Space>
             </Dropdown>
@@ -105,7 +104,7 @@ export function AdminLayout() {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          体育场馆管理系统 ©{new Date().getFullYear()}
+          {t('footer')} {new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>

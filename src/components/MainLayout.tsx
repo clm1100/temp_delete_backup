@@ -10,7 +10,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation, Outlet } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuthStore } from '@/stores/authStore'
 import { menuConfig } from '@/config/permission'
 
 const { Header, Sider, Content, Footer } = Layout
@@ -27,7 +27,8 @@ const iconMap: Record<string, React.ReactNode> = {
 export function MainLayout() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { user, logout } = useAuth()
+  const user = useAuthStore((state) => state.user)
+  const logout = useAuthStore((state) => state.logout)
   const [collapsed, setCollapsed] = useState(false)
 
   // 根据用户权限过滤菜单

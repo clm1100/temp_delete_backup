@@ -1,7 +1,8 @@
 import { Table, Button, Space } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useNavigate } from 'react-router-dom'
-import { useVenue } from '@/contexts/VenueContext'
+import { useTranslation } from 'react-i18next'
+import { useVenueStore } from '@/stores/venueStore'
 
 interface VenueRecord {
   id: string
@@ -11,8 +12,9 @@ interface VenueRecord {
 }
 
 export function Venues() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
-  const { enterVenue } = useVenue()
+  const enterVenue = useVenueStore((state) => state.enterVenue)
 
   const handleEnterVenue = (record: VenueRecord) => {
     enterVenue(record.id, record.name)
@@ -26,31 +28,31 @@ export function Venues() {
       key: 'id',
     },
     {
-      title: '场馆名称',
+      title: t('venue.venueList'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: '地址',
+      title: t('venue.address'),
       dataIndex: 'address',
       key: 'address',
     },
     {
-      title: '状态',
+      title: t('venue.status'),
       dataIndex: 'status',
       key: 'status',
-      render: (status: string) => (status === 'active' ? '营业中' : '已关闭'),
+      render: (status: string) => (status === 'active' ? t('venue.active') : t('venue.inactive')),
     },
     {
-      title: '操作',
+      title: t('common.edit'),
       key: 'action',
       render: (_: unknown, record: VenueRecord) => (
         <Space>
           <Button type="primary" onClick={() => handleEnterVenue(record)}>
-            进入场馆
+            {t('menu.venueManagement')}
           </Button>
-          <Button type="link">编辑</Button>
-          <Button type="link" danger>删除</Button>
+          <Button type="link">{t('common.edit')}</Button>
+          <Button type="link" danger>{t('common.delete')}</Button>
         </Space>
       ),
     },
@@ -64,9 +66,9 @@ export function Venues() {
 
   return (
     <div>
-      <h2>体育馆管理</h2>
+      <h2>{t('menu.venues')}</h2>
       <div style={{ marginBottom: 16 }}>
-        <Button type="primary">新增场馆</Button>
+        <Button type="primary">{t('venue.addVenue')}</Button>
       </div>
       <Table columns={columns} dataSource={data} rowKey="id" />
     </div>

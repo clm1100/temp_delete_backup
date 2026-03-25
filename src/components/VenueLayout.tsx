@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Layout, Menu, Dropdown, Avatar, Space, Typography, Button } from 'antd'
 import {
   DashboardOutlined,
@@ -9,8 +9,11 @@ import {
   ArrowLeftOutlined,
 } from '@ant-design/icons'
 import { useNavigate, useLocation, Outlet, useParams } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
-import { useVenue } from '@/contexts/VenueContext'
+import { useTranslation } from 'react-i18next'
+import { useAuthStore } from '@/stores/authStore'
+import { useVenueStore } from '@/stores/venueStore'
+import { mockVenues } from '@/stores/authStore'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const { Header, Sider, Content, Footer } = Layout
 const { Text } = Typography
@@ -21,52 +24,63 @@ const iconMap: Record<string, React.ReactNode> = {
   FileText: <FileTextOutlined />,
 }
 
-function getVenueMenuItems(venueId: string, hasStaffPermission: boolean, hasReportPermission: boolean) {
-  const items = [
-    {
-      key: `/venue/${venueId}/dashboard`,
-      icon: iconMap.Dashboard,
-      label: '仪表盘',
-    },
-  ]
-
-  if (hasStaffPermission) {
-    items.push({
-      key: `/venue/${venueId}/staff`,
-      icon: iconMap.Team,
-      label: '员工管理',
-    })
-  }
-
-  if (hasReportPermission) {
-    items.push({
-      key: `/venue/${venueId}/reports`,
-      icon: iconMap.FileText,
-      label: '报表中心',
-    })
-  }
-
-  return items
-}
-
 export function VenueLayout() {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { user, logout } = useAuth()
-  const { currentVenueId, currentVenueName, exitVenue } = useVenue()
+  const user = useAuthStore((state) => state.user)
+  const logout = useAuthStore((state) => state.logout)
+  const currentVenueId = useVenueStore((state) => state.currentVenueId)
+  const currentVenueName = useVenueStore((state) => state.currentVenueName)
+  const exitVenue = useVenueStore((state) => state.exitVenue)
+  const enterVenue = useVenueStore((state) => state.enterVenue)
   const [collapsed, setCollapsed] = useState(false)
 
   // 从 URL 获取 venueId
   const params = useParams()
   const venueId = params.venueId || currentVenueId
 
+  // 自动设置当前场馆（venue_admin/staff 登录后直接进入所属场馆）
+  useEffect(() => {
+    if (user?.venueId && !currentVenueId) {
+      const venue = mockVenues[user.venueId]
+      if (venue) {
+        enterVenue(venue.id, venue.name)
+      } else {
+        enterVenue(user.venueId)
+      }
+    }
+  }, [user, currentVenueId, enterVenue])
+
   // 根据权限过滤菜单
   const hasStaffPermission = user?.permissions.includes('staff:view') || false
   const hasReportPermission = user?.permissions.includes('report:view') || false
 
-  const menuItems = venueId
-    ? getVenueMenuItems(venueId, hasStaffPermission, hasReportPermission)
-    : []
+  const menuItems = useMemo(() => {
+    if (!venueId) return []
+    const items = [
+      {
+        key: `/venue/${venueId}/dashboard`,
+        icon: iconMap.Dashboard,
+        label: t('menu.dashboard'),
+      },
+    ]
+    if (hasStaffPermission) {
+      items.push({
+        key: `/venue/${venueId}/staff`,
+        icon: iconMap.Team,
+        label: t('menu.staff'),
+      })
+    }
+    if (hasReportPermission) {
+      items.push({
+        key: `/venue/${venueId}/reports`,
+        icon: iconMap.FileText,
+        label: t('menu.reports'),
+      })
+    }
+    return items
+  }, [venueId, hasStaffPermission, hasReportPermission, t])
 
   const selectedKey = location.pathname
 
@@ -74,7 +88,7 @@ export function VenueLayout() {
     {
       key: 'logout',
       icon: <LogoutOutlined />,
-      label: '退出登录',
+      label: t('common.logout'),
     },
   ]
 
@@ -94,12 +108,6 @@ export function VenueLayout() {
     navigate('/admin/venues')
   }
 
-  const roleLabels: Record<string, string> = {
-    super_admin: '超级管理员',
-    venue_admin: '场馆管理员',
-    staff: '普通员工',
-  }
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
@@ -109,7 +117,7 @@ export function VenueLayout() {
         theme="light"
       >
         <div className="logo" style={{ height: 32, margin: 16, textAlign: 'center' }}>
-          {!collapsed && <span>{currentVenueName || '场馆运营'}</span>}
+          {!collapsed && <span>{currentVenueName || t('menu.venueOperation')}</span>}
         </div>
         <Menu
           theme="light"
@@ -124,25 +132,28 @@ export function VenueLayout() {
           <Space>
             {user?.role === 'super_admin' && (
               <Button icon={<ArrowLeftOutlined />} onClick={handleBackToAdmin}>
-                返回系统管理
+                {t('menu.backToAdmin')}
               </Button>
             )}
             {currentVenueName && (
               <Text strong style={{ fontSize: 16 }}>{currentVenueName}</Text>
             )}
           </Space>
-          <Dropdown
-            menu={{ items: userMenuItems, onClick: handleUserMenuClick }}
-            placement="bottomRight"
-          >
-            <Space style={{ cursor: 'pointer' }}>
-              <Avatar icon={<UserOutlined />} />
-              <div style={{ lineHeight: 1.3 }}>
-                <Text strong style={{ display: 'block' }}>{user?.email}</Text>
-                <Text type="secondary" style={{ fontSize: 12 }}>{user && roleLabels[user.role]}</Text>
-              </div>
-            </Space>
-          </Dropdown>
+          <Space size="middle">
+            <LanguageSwitcher />
+            <Dropdown
+              menu={{ items: userMenuItems, onClick: handleUserMenuClick }}
+              placement="bottomRight"
+            >
+              <Space style={{ cursor: 'pointer' }}>
+                <Avatar icon={<UserOutlined />} />
+                <div style={{ lineHeight: 1.3 }}>
+                  <Text strong style={{ display: 'block' }}>{user?.email}</Text>
+                  <Text type="secondary" style={{ fontSize: 12 }}>{user && t(`roles.${user.role}`)}</Text>
+                </div>
+              </Space>
+            </Dropdown>
+          </Space>
         </Header>
         <Content style={{ padding: 24 }}>
           <div className="main-content">
@@ -150,7 +161,7 @@ export function VenueLayout() {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          体育场馆管理系统 ©{new Date().getFullYear()}
+          {t('footer')} {new Date().getFullYear()}
         </Footer>
       </Layout>
     </Layout>

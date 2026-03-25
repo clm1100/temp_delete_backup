@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import type { Role, PermissionCode } from '@/types/auth'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuthStore } from '@/stores/authStore'
 import { hasPermission } from '@/config/permission'
 
 interface ProtectedRouteProps {
@@ -14,7 +14,8 @@ export function ProtectedRoute({
   allowedRoles,
   allowedPermissions,
 }: ProtectedRouteProps) {
-  const { user, isAuthenticated } = useAuth()
+  const user = useAuthStore((state) => state.user)
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
 
   // 未登录，跳转登录页
   if (!isAuthenticated || !user) {

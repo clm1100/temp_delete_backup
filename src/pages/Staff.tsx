@@ -1,5 +1,6 @@
 import { Table, Button, Space, Tag } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
+import { useTranslation } from 'react-i18next'
 import { usePermission } from '@/hooks/usePermission'
 
 interface StaffRecord {
@@ -11,6 +12,7 @@ interface StaffRecord {
 }
 
 export function Staff() {
+  const { t } = useTranslation()
   const { hasPermission } = usePermission()
   const canEdit = hasPermission('staff:edit')
 
@@ -21,17 +23,17 @@ export function Staff() {
       key: 'id',
     },
     {
-      title: '姓名',
+      title: t('staff.name'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: '邮箱',
+      title: t('staff.email'),
       dataIndex: 'email',
       key: 'email',
     },
     {
-      title: '角色',
+      title: t('staff.role'),
       dataIndex: 'role',
       key: 'role',
       render: (role: string) => {
@@ -39,26 +41,22 @@ export function Staff() {
           venue_admin: 'blue',
           staff: 'green',
         }
-        const roleLabel: Record<string, string> = {
-          venue_admin: '场馆管理员',
-          staff: '普通员工',
-        }
-        return <Tag color={tagColor[role]}>{roleLabel[role] || role}</Tag>
+        return <Tag color={tagColor[role]}>{t(`roles.${role}`)}</Tag>
       },
     },
     {
-      title: '状态',
+      title: t('staff.status'),
       dataIndex: 'status',
       key: 'status',
-      render: (status: string) => (status === 'active' ? '在职' : '离职'),
+      render: (status: string) => (status === 'active' ? t('staff.active') : t('staff.inactive')),
     },
     {
-      title: '操作',
+      title: t('common.edit'),
       key: 'action',
       render: () => (
         <Space>
-          <Button type="link" disabled={!canEdit}>编辑</Button>
-          <Button type="link" danger disabled={!canEdit}>删除</Button>
+          <Button type="link" disabled={!canEdit}>{t('common.edit')}</Button>
+          <Button type="link" danger disabled={!canEdit}>{t('common.delete')}</Button>
         </Space>
       ),
     },
@@ -72,9 +70,9 @@ export function Staff() {
 
   return (
     <div>
-      <h2>员工管理</h2>
+      <h2>{t('menu.staff')}</h2>
       <div style={{ marginBottom: 16 }}>
-        <Button type="primary" disabled={!canEdit}>新增员工</Button>
+        <Button type="primary" disabled={!canEdit}>{t('staff.addStaff')}</Button>
       </div>
       <Table columns={columns} dataSource={data} rowKey="id" />
     </div>

@@ -1,10 +1,12 @@
 import { useCallback } from 'react'
 import type { Role, PermissionCode } from '@/types/auth'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuthStore } from '@/stores/authStore'
 import { hasPermission } from '@/config/permission'
 
 export function usePermission() {
-  const { user, hasPermission: checkAuthPermission, hasRole: checkAuthRole } = useAuth()
+  const user = useAuthStore((state) => state.user)
+  const checkAuthPermission = useAuthStore((state) => state.hasPermission)
+  const checkAuthRole = useAuthStore((state) => state.hasRole)
 
   const hasPermissionCode = useCallback(
     (permission: PermissionCode): boolean => {

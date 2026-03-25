@@ -39,7 +39,13 @@
       "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup && npm install react-router-dom\")",
       "Bash(cmd.exe /c \"cd /d C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup && npm install react-router-dom 2>&1\")",
       "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup''; npm install react-router-dom\")",
-      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup''; npm install antd\")"
+      "Bash(powershell.exe -Command \"cd ''C:\\\\Users\\\\15787\\\\Desktop\\\\temp_delete_backup''; npm install antd\")",
+      "Bash(npx tsc:*)",
+      "Bash(C:/vm4w/nodejs/npm.cmd --version)",
+      "Bash(node:*)",
+      "Bash(grep -E \"^\\(vite|npm\\)$\")",
+      "Bash(powershell -File node_modules/.bin/vite.ps1 --version)",
+      "Bash(powershell -File node_modules/.bin/vite.ps1)"
     ]
   }
 }
