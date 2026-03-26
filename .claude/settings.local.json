@@ -45,7 +45,8 @@
       "Bash(node:*)",
       "Bash(grep -E \"^\\(vite|npm\\)$\")",
       "Bash(powershell -File node_modules/.bin/vite.ps1 --version)",
-      "Bash(powershell -File node_modules/.bin/vite.ps1)"
+      "Bash(powershell -File node_modules/.bin/vite.ps1)",
+      "Bash(bun --version)"
     ]
   }
 }

@@ -116,8 +116,22 @@ export function VenueLayout() {
         onCollapse={setCollapsed}
         theme="light"
       >
-        <div className="logo" style={{ height: 32, margin: 16, textAlign: 'center' }}>
-          {!collapsed && <span>{currentVenueName || t('menu.venueOperation')}</span>}
+        <div
+          className="logo"
+          style={{
+            height: 48,
+            margin: '12px 16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
+          }}
+        >
+          {!collapsed && (
+            <span style={{ color: '#000', fontSize: 15, fontWeight: 600, letterSpacing: '0.02em' }}>
+              {t('common.systemTitle')}
+            </span>
+          )}
         </div>
         <Menu
           theme="light"

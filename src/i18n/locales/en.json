@@ -10,6 +10,7 @@
     "confirm": "Confirm",
     "search": "Search",
     "reset": "Reset",
+    "systemTitle": "Venue Management System",
     "submit": "Submit"
   },
   "menu": {
@@ -26,8 +27,11 @@
   "auth": {
     "loginSuccess": "Login successful",
     "loginFailed": "Invalid email or password",
-    "email": "Email",
+    "loginTitle": "Sign in to your account",
+    "email": "Email address",
+    "emailRequired": "Please enter your email",
     "password": "Password",
+    "passwordRequired": "Please enter password (min 6 characters)",
     "noAccount": "Don't have an account?",
     "register": "Register",
     "testAccounts": "Test accounts: super@example.com / admin@example.com / staff@example.com"
@@ -61,6 +65,7 @@
       "venue_admin": "Welcome to Venue Admin Dashboard",
       "staff": "Welcome to Staff Dashboard"
     },
+    "overview": "Venue Data Overview",
     "venueCount": "Venue Count",
     "staffCount": "Staff Count",
     "orderCount": "Monthly Orders",
